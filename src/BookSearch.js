@@ -11,6 +11,7 @@ class BookSearch extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         // onDeleteContact: PropTypes.func.isRequired
+        // onSearchContact: ProTyples.func.isRequired
     }
 
     state = {
@@ -34,7 +35,7 @@ class BookSearch extends Component {
         let showingBooks
         if (query) {
             const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.author || book.name))
+            showingBooks = books.filter((book) => match.test(book.author) || match.test(book.name))
         } else {
             showingBooks = books
         }
@@ -55,13 +56,10 @@ class BookSearch extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-
                     <ol className="books-grid">
-                        {showingBooks.map((book) => (
-                            <li key={book.title} >
-                                <Books />
-                            </li>
-                        ))}
+                        <Books
+                            showingBooks={showingBooks}
+                            />
                     </ol>
                 </div>
             </div>
