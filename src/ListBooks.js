@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
+
     render() {
         return (
             <div className="list-books">
