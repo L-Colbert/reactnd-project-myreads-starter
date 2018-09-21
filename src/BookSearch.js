@@ -29,7 +29,7 @@ class BookSearch extends Component {
 
         if (query) {
             BooksAPI.search(query).then((moreBooks) => {
-                if (moreBooks.length) {
+                if (moreBooks.length && this.state.query.length) {
                     this.setState(({
                         showingBooks: moreBooks
                     }))
