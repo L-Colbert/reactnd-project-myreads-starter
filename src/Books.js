@@ -22,13 +22,13 @@ class Books extends Component {
                                         style={{
                                             width: 128,
                                             height: 193,
-                                            backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `/icons/cotton-field.jpg`
+                                            backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `url(./icons/rhino.jpg)`
                                         }}>
                                     </div>
                                     <ChangeShelf />
                                 </div>
                                 <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.authors}</div>
+                                <div className="book-authors">{book.authors ? book.authors : `Author: Not Available`}</div>
                             </div>
                         </li>
                     ))}
