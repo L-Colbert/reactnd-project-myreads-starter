@@ -11,24 +11,19 @@ class App extends React.Component {
     }
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
-            this.setState({ books })
-            console.log(books)
+            this.setState(({ books })
+            )
         })
     }
 
     updateShelf(book, shelf) {
         BooksAPI.update(book, shelf).then((book) => {
             this.setState(state => ({
-                books : state.books}))
+                books: state.books
+            }))
         })
     }
 
-    searchBooks(query) {
-        BooksAPI.search(query).then(books => {
-            this.setState({ books })
-        } )
-    }
-        
     render() {
         return (
             <div className="app">

@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
-// import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 import Books from './Books'
-
+import * as BooksAPI from './BooksAPI'
 
 
 class BookSearch extends Component {
-    static propTypes = {
-        books: PropTypes.array.isRequired,
-        // onDeleteContact: PropTypes.func.isRequired
-        // onSearchContact: ProTyples.func.isRequired
-    }
+    // static propTypes = {
+    // books: PropTypes.array.isRequired,
+    // onSearchBooks: PropTypes.func.isRequired
+    // }
 
     state = {
-        query: ''
+        query: '',
+        showingBooks: []
     }
 
     updateQuery = (query) => {
@@ -27,20 +25,24 @@ class BookSearch extends Component {
     }
 
     render() {
-        //search code from Udacity React Course
-        //http://
-        const { books } = this.props
-        const { query } = this.state
+        const { query, showingBooks } = this.state
 
-        let showingBooks
         if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.author) || match.test(book.name))
+            BooksAPI.search(query).then((moreBooks) => {
+                if (moreBooks.length) {
+                    this.setState(({
+                        showingBooks: moreBooks
+                    }))
+                }
+                else {
+                    this.setState(({
+                        showingBooks: []
+                    }))
+                }
+            })
         } else {
-            showingBooks = books
+            //TODO: Do I need this
         }
-        // showingBooks.sort(sortBy('author'))
-
 
         return (
             <div className="search-books">
@@ -50,7 +52,7 @@ class BookSearch extends Component {
                         <input
                             type="text"
                             placeholder="Search by title or author"
-                            value={this.state.query}
+                            value={query}
                             onChange={(event) => this.updateQuery(event.target.value)}
                         />
                     </div>
@@ -59,7 +61,7 @@ class BookSearch extends Component {
                     <ol className="books-grid">
                         <Books
                             showingBooks={showingBooks}
-                            />
+                        />
                     </ol>
                 </div>
             </div>
