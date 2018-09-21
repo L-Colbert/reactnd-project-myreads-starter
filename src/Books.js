@@ -22,7 +22,7 @@ class Books extends Component {
                                         style={{
                                             width: 128,
                                             height: 193,
-                                            backgroundImage: `url(${book.imageLinks.thumbnail})`
+                                            backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `/icons/cotton-field.jpg`
                                         }}>
                                     </div>
                                     <ChangeShelf />
