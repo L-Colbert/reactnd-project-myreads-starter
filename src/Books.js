@@ -8,6 +8,10 @@ class Books extends Component {
         showingBooks: PropTypes.array.isRequired,
     }
 
+    state = {
+        shelf : 'none'
+    }
+
     render() {
         const { showingBooks } = this.props
         return (
@@ -25,7 +29,9 @@ class Books extends Component {
                                             backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `url(./icons/rhino.jpg)`
                                         }}>
                                     </div>
-                                    <ChangeShelf />
+                                    <ChangeShelf
+                                        shelf={this.state.shelf}
+                                    />
                                 </div>
                                 <div className="book-title">{book.title}</div>
                                 <div className="book-authors">{book.authors ? book.authors : `Author: Not Available`}</div>
