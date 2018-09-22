@@ -30,7 +30,9 @@ class Books extends Component {
                                         }}>
                                     </div>
                                     <ChangeShelf
-                                        shelf={this.state.shelf}
+                                        // onChangeShelf={(shelf) => {
+                                        //     this.ChangeShelf(shelf)
+                                        // }}
                                     />
                                 </div>
                                 <div className="book-title">{book.title}</div>
