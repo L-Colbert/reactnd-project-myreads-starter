@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import ChangeShelf from './ChangeShelf'
 import PropTypes from 'prop-types'
 
-
 class Books extends Component {
     static propTypes = {
         showingBooks: PropTypes.array.isRequired,
-    }
-
-    state = {
-        shelf : 'none'
+        onChangeShelf: PropTypes.func.isRequired
     }
 
     render() {
@@ -30,9 +26,9 @@ class Books extends Component {
                                         }}>
                                     </div>
                                     <ChangeShelf
-                                        // onChangeShelf={(shelf) => {
-                                        //     this.ChangeShelf(shelf)
-                                        // }}
+                                        onChangeShelf={this.props.onChangeShelf}
+                                        showingBooks={this.showingBooks}
+                                        book={book}
                                     />
                                 </div>
                                 <div className="book-title">{book.title}</div>

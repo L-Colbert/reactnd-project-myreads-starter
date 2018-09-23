@@ -6,10 +6,10 @@ import * as BooksAPI from './BooksAPI'
 
 
 class BookSearch extends Component {
-    // static propTypes = {
-    // books: PropTypes.array.isRequired,
-    // onSearchBooks: PropTypes.func.isRequired
-    // }
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        onChangeShelf: PropTypes.func.isRequired
+    }
 
     state = {
         query: '',
@@ -23,6 +23,14 @@ class BookSearch extends Component {
     clearQuery = () => {
         this.setState({ query: '' })
     }
+
+    // updateBooksArray = showingBooks => {
+    //     BooksAPI.getAll().then((showingBooks) => {
+    //         this.setState(({ showingBooks })
+    //         )
+    //     })
+    // }
+
 
     render() {
         const { query, showingBooks } = this.state
@@ -40,8 +48,6 @@ class BookSearch extends Component {
                     }))
                 }
             })
-        } else {
-            //TODO: Do I need this
         }
 
         return (
@@ -60,7 +66,8 @@ class BookSearch extends Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         <Books
-                            showingBooks={showingBooks}
+                            showingBooks={this.state.showingBooks}
+                            onChangeShelf={this.props.onChangeShelf}
                         />
                     </ol>
                 </div>

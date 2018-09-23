@@ -14,7 +14,8 @@ class ListBooks extends Component {
                     <div>
                         <BookShelf
                             books={this.props.books}
-                        />
+                            onChangeShelf={this.props.onChangeShelf}
+                            />
                     </div>
                 </div>
                 <div className="open-search">
