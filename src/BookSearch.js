@@ -13,6 +13,7 @@ class BookSearch extends Component {
 
     state = {
         query: '',
+        books: [],
         showingBooks: []
     }
 
@@ -24,20 +25,18 @@ class BookSearch extends Component {
         this.setState({ query: '' })
     }
 
-    // updateBooksArray = showingBooks => {
-    //     BooksAPI.getAll().then((showingBooks) => {
-    //         this.setState(({ showingBooks })
-    //         )
-    //     })
-    // }
-
-
-    render() {
-        const { query, showingBooks } = this.state
+    componentDidUpdate() {
+        const { query } = this.state
+        const { books } = this.props
 
         if (query) {
             BooksAPI.search(query).then((moreBooks) => {
-                if (moreBooks.length && this.state.query.length) {
+                if (moreBooks.length && query.length) {
+                    moreBooks.forEach(bk => {
+                        books.forEach(origBk => {
+                            if (bk.id === origBk.id && bk.shelf !== origBk.shelf) bk.shelf = origBk.shelf
+                        })
+                    })
                     this.setState(({
                         showingBooks: moreBooks
                     }))
@@ -49,6 +48,10 @@ class BookSearch extends Component {
                 }
             })
         }
+    }
+
+
+    render() {
 
         return (
             <div className="search-books">
@@ -58,7 +61,7 @@ class BookSearch extends Component {
                         <input
                             type="text"
                             placeholder="Search by title or author"
-                            value={query}
+                            value={this.state.query}
                             onChange={(event) => this.updateQuery(event.target.value)}
                         />
                     </div>

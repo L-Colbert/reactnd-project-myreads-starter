@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
 class ChangeShelf extends Component {
 
@@ -8,7 +7,6 @@ class ChangeShelf extends Component {
 
             return (
                 <div className="book-shelf-changer">
-                {console.log(book.shelf)}
                     <select
                         value={book.shelf === undefined ? "none" : book.shelf}
                         onChange={(e) => onChangeShelf(book, e.target.value)}>
