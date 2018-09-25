@@ -31,6 +31,8 @@ class BookSearch extends Component {
 
         if (query) {
             BooksAPI.search(query).then((moreBooks) => {
+                //if input is received and books were found, then 
+                //set the state of showingBooks to the resulting arrat
                 if (moreBooks.length && query.length) {
                     moreBooks.forEach(bk => {
                         books.forEach(origBk => {
@@ -42,6 +44,8 @@ class BookSearch extends Component {
                     }))
                 }
                 else {
+                    // if no results were found from the query,
+                    //show no books
                     this.setState(({
                         showingBooks: []
                     }))
@@ -62,6 +66,7 @@ class BookSearch extends Component {
                             type="text"
                             placeholder="Search by title or author"
                             value={this.state.query}
+                            //update the query text as the user types
                             onChange={(event) => this.updateQuery(event.target.value)}
                         />
                     </div>

@@ -22,6 +22,7 @@ class Books extends Component {
                                         style={{
                                             width: 128,
                                             height: 193,
+                                            //if no backgorund image is included in the object, replace the image w/ a placeholder image
                                             backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : `url(./icons/rhino.jpg)`
                                         }}>
                                     </div>
