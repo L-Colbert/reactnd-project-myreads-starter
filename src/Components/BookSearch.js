@@ -13,7 +13,6 @@ class BookSearch extends Component {
 
     state = {
         query: '',
-        books: [],
         showingBooks: []
     }
 
@@ -25,15 +24,15 @@ class BookSearch extends Component {
         this.setState({ query: '' })
     }
 
-    componentDidUpdate() {
-        const { query } = this.state
+    render() {
+        const { query, showingBooks } = this.state
         const { books } = this.props
 
         if (query) {
             BooksAPI.search(query).then((moreBooks) => {
                 //if input is received and books were found, then 
-                //set the state of showingBooks to the resulting arrat
-                if (moreBooks.length && query.length) {
+                //set the state of showingBooks to the resulting array
+                if (moreBooks.length && this.state.query.length) {
                     moreBooks.forEach(bk => {
                         books.forEach(origBk => {
                             if (bk.id === origBk.id && bk.shelf !== origBk.shelf) bk.shelf = origBk.shelf
@@ -52,10 +51,6 @@ class BookSearch extends Component {
                 }
             })
         }
-    }
-
-
-    render() {
 
         return (
             <div className="search-books">
@@ -66,7 +61,7 @@ class BookSearch extends Component {
                             autoFocus
                             type="text"
                             placeholder="Search by title or author"
-                            value={this.state.query}
+                            value={query}
                             //update the query text as the user types
                             onChange={(event) => this.updateQuery(event.target.value)}
                         />
@@ -75,8 +70,8 @@ class BookSearch extends Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         <Books
-                            showingBooks={this.state.showingBooks}
-                            onChangeShelf={this.props.onChangeShelf}
+                            showingBooks={showingBooks}
+                        onChangeShelf={this.props.onChangeShelf}
                         />
                     </ol>
                 </div>
