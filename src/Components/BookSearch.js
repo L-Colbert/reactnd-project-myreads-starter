@@ -32,7 +32,6 @@ class BookSearch extends Component {
         this.setState({ query: '' })
     }
 
-    // componentDidUpdate() {
     updateShelf = query => {
 
         if (!query.length) {
@@ -63,7 +62,6 @@ class BookSearch extends Component {
         })
     }
 
-
     render() {
         return (
             <div className="search-books" >
@@ -85,7 +83,6 @@ class BookSearch extends Component {
                         <Books
                             showingBooks={this.state.showingBooks}
                             onChangeShelf={this.props.onChangeShelf}
-                        // bookshelf={}
                         />
                     </ol>
                 </div>

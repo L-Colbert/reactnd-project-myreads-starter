@@ -10,7 +10,6 @@ class BookShelf extends Component {
     }
 
     render() {
-
         const { books } = this.props
         return (
             <div className="bookshelf">
@@ -32,7 +31,6 @@ class BookShelf extends Component {
                     showingBooks={books.filter(book =>
                         book.shelf === "read"
                     )} />
-
             </div>
         )
     }

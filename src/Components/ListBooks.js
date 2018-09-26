@@ -10,7 +10,6 @@ class ListBooks extends Component {
         onChangeShelf: PropTypes.func.isRequired
     }
 
-
     render() {
         return (
             <div className="list-books">
@@ -22,7 +21,7 @@ class ListBooks extends Component {
                         <BookShelf
                             books={this.props.books}
                             onChangeShelf={this.props.onChangeShelf}
-                            />
+                        />
                     </div>
                 </div>
                 <div className="open-search">
@@ -31,9 +30,7 @@ class ListBooks extends Component {
                         className="open-search"
                     >Add a book</Link>
                 </div>
-
             </div>
-
         )
     }
 }
