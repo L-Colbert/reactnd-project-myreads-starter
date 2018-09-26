@@ -8,8 +8,8 @@ import BookSearch from './Components/BookSearch'
 class App extends Component {
     state = {
         books: []
-
     }
+
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState(({ books })
@@ -18,13 +18,16 @@ class App extends Component {
     }
 
     changeShelf = (book, shelf) => {
+        console.log(`i'm changing shelf for ${book.title}`)
         BooksAPI.update(book, shelf)
         BooksAPI.getAll().then((books) => {
             this.setState(({ books })
             )
         })
+        .catch(err => {
+            console.log(`failed with ${err}`)
+        })
     }
-
 
     render() {
         return (
